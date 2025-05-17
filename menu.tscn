@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://cshby83gig8k4"]
+
+[ext_resource type="Texture2D" uid="uid://cco1ayel3shl6" path="res://assets/background/bg-back.png" id="1_lti8b"]
+[ext_resource type="Script" uid="uid://btlfe7hlr4gr1" path="res://menu.gd" id="1_ouk20"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ouk20"]
+texture = ExtResource("1_lti8b")
+
+[sub_resource type="FontVariation" id="FontVariation_vsb4k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ouk20"]
+bg_color = Color(0.277528, 0.277528, 0.277528, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lti8b"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ouk20")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ouk20")
+
+[node name="Game" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_top = -256.0
+offset_right = 127.0
+offset_bottom = -172.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_vsb4k")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/hover = SubResource("StyleBoxFlat_ouk20")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lti8b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lti8b")
+text = "START GAME"
+
+[node name="Tutorial" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_top = -124.0
+offset_right = 127.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_vsb4k")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/hover = SubResource("StyleBoxFlat_ouk20")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lti8b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lti8b")
+text = "TUTORIAL"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -485.0
+offset_right = 486.0
+offset_bottom = 315.0
+grow_horizontal = 2
+theme_override_constants/shadow_offset_x = 20
+theme_override_constants/shadow_offset_y = 20
+theme_override_font_sizes/font_size = 120
+text = "Space Fighter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Game" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Tutorial" to="." method="_on_tutorial_pressed"]
