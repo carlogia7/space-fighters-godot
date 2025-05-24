@@ -1,3 +1,32 @@
-[gd_scene format=3 uid="uid://chsrva7321qet"]
+[gd_scene load_steps=6 format=3 uid="uid://chsrva7321qet"]
+
+[ext_resource type="Script" uid="uid://cxum5fqwm0p6f" path="res://scripts/game.gd" id="1_ibkli"]
+[ext_resource type="PackedScene" uid="uid://jqm5euw4tqqq" path="res://scenes/player.tscn" id="2_qbsmt"]
+[ext_resource type="PackedScene" uid="uid://vlicci5a3xw3" path="res://scenes/diver_enemy.tscn" id="3_78awf"]
+[ext_resource type="PackedScene" uid="uid://dbdiyts3eaoti" path="res://scenes/enemy.tscn" id="4_78awf"]
+[ext_resource type="Texture2D" uid="uid://cco1ayel3shl6" path="res://assets/background/bg-back.png" id="4_s0nni"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_ibkli")
+enemy_scenes = Array[PackedScene]([ExtResource("4_78awf"), ExtResource("3_78awf")])
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(576.279, 323.209)
+scale = Vector2(4.22589, 4.03489)
+texture = ExtResource("4_s0nni")
+region_enabled = true
+region_rect = Rect2(0, 0, 272, 160)
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Player" parent="." instance=ExtResource("2_qbsmt")]
+position = Vector2(65, 23)
+
+[node name="LaserContainer" type="Node2D" parent="."]
+
+[node name="EnemyContainer" type="Node2D" parent="."]
+
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
