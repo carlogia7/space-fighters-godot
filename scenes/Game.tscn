@@ -1,10 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://chsrva7321qet"]
+[gd_scene load_steps=8 format=3 uid="uid://chsrva7321qet"]
 
 [ext_resource type="Script" uid="uid://cxum5fqwm0p6f" path="res://scripts/game.gd" id="1_ibkli"]
 [ext_resource type="PackedScene" uid="uid://jqm5euw4tqqq" path="res://scenes/player.tscn" id="2_qbsmt"]
 [ext_resource type="PackedScene" uid="uid://vlicci5a3xw3" path="res://scenes/diver_enemy.tscn" id="3_78awf"]
 [ext_resource type="PackedScene" uid="uid://dbdiyts3eaoti" path="res://scenes/enemy.tscn" id="4_78awf"]
 [ext_resource type="Texture2D" uid="uid://cco1ayel3shl6" path="res://assets/background/bg-back.png" id="4_s0nni"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s0nni"]
+bg_color = Color(0.286275, 0.337255, 0.384314, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aug50"]
+bg_color = Color(0.509804, 0.568627, 0.917647, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ibkli")
@@ -23,10 +37,24 @@ region_rect = Rect2(0, 0, 272, 160)
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource("2_qbsmt")]
-position = Vector2(65, 23)
+position = Vector2(547, 523)
 
 [node name="LaserContainer" type="Node2D" parent="."]
 
 [node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="CooldownBar" type="ProgressBar" parent="HUD"]
+offset_left = 12.0
+offset_top = 608.0
+offset_right = 120.0
+offset_bottom = 635.0
+theme_override_styles/background = SubResource("StyleBoxFlat_s0nni")
+theme_override_styles/fill = SubResource("StyleBoxFlat_aug50")
+max_value = 10.0
+value = 10.0
+rounded = true
+show_percentage = false
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

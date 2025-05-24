@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://vlicci5a3xw3"]
+[gd_scene load_steps=4 format=3 uid="uid://vlicci5a3xw3"]
 
 [ext_resource type="PackedScene" uid="uid://dbdiyts3eaoti" path="res://scenes/enemy.tscn" id="1_x15ja"]
 [ext_resource type="Texture2D" uid="uid://cg6monuhxju75" path="res://assets/Small/Enemy_Follow.png" id="2_5ovsw"]
+[ext_resource type="Script" uid="uid://bekxaxxlkxrio" path="res://scripts/diver_enemy.gd" id="2_qmvpy"]
 
 [node name="DiverEnemy" instance=ExtResource("1_x15ja")]
+script = ExtResource("2_qmvpy")
+steer_strength = 1.5
+rotation_smoothing = 8.0
+vertical_steer_limit = 0.2
 speed = 300.0
 
 [node name="Sprite2D" parent="." index="0"]
