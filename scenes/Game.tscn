@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://chsrva7321qet"]
+[gd_scene load_steps=9 format=3 uid="uid://chsrva7321qet"]
 
 [ext_resource type="Script" uid="uid://cxum5fqwm0p6f" path="res://scripts/game.gd" id="1_ibkli"]
 [ext_resource type="PackedScene" uid="uid://jqm5euw4tqqq" path="res://scenes/player.tscn" id="2_qbsmt"]
 [ext_resource type="PackedScene" uid="uid://vlicci5a3xw3" path="res://scenes/diver_enemy.tscn" id="3_78awf"]
 [ext_resource type="PackedScene" uid="uid://dbdiyts3eaoti" path="res://scenes/enemy.tscn" id="4_78awf"]
 [ext_resource type="Texture2D" uid="uid://cco1ayel3shl6" path="res://assets/background/bg-back.png" id="4_s0nni"]
+[ext_resource type="AudioStream" uid="uid://dn0e2yys4t1v" path="res://assets/sounds/wacky-fight.mp3" id="6_aug50"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s0nni"]
 bg_color = Color(0.286275, 0.337255, 0.384314, 1)
@@ -56,5 +57,9 @@ max_value = 10.0
 value = 10.0
 rounded = true
 show_percentage = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_aug50")
+autoplay = true
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
