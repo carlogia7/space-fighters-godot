@@ -9,7 +9,7 @@ script = ExtResource("2_qmvpy")
 steer_strength = 1.5
 rotation_smoothing = 8.0
 vertical_steer_limit = 0.2
-speed = 300.0
+speed = 400.0
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(0.8, 0.661)

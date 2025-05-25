@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d31h4smahgns4"]
+[gd_scene load_steps=13 format=3 uid="uid://d31h4smahgns4"]
 
 [ext_resource type="Texture2D" uid="uid://cco1ayel3shl6" path="res://assets/background/bg-back.png" id="1_ci5ev"]
 [ext_resource type="Script" uid="uid://bn6umy76konyr" path="res://scripts/tutorial.gd" id="1_ebau5"]
@@ -6,9 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://d0fp0lbuo52xb" path="res://assets/wasd.png" id="3_288ch"]
 [ext_resource type="AudioStream" uid="uid://c3iu5yjwfkjii" path="res://assets/sounds/tutorial-warped-shooting.wav" id="3_pgr2e"]
 [ext_resource type="Texture2D" uid="uid://dorjrgaep0678" path="res://assets/mouse-button.png" id="4_twv1b"]
+[ext_resource type="Script" uid="uid://cyanlh4khqe3" path="res://scripts/tutorial/survive_tutorial.gd" id="5_u5f0c"]
+[ext_resource type="PackedScene" uid="uid://vlicci5a3xw3" path="res://scenes/diver_enemy.tscn" id="6_0g6v0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ebau5"]
 texture = ExtResource("1_ci5ev")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u5f0c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebau5"]
 bg_color = Color(0.286275, 0.337255, 0.384314, 1)
@@ -72,24 +76,32 @@ offset_bottom = 517.0
 text = "Use a tecla ESPAÇO para ativar a invulnerabilidade
 e acompanhe a barra"
 
-[node name="Survive" type="Label" parent="UI"]
+[node name="Survive" type="Label" parent="UI" node_paths=PackedStringArray("controller", "enemy_container")]
 offset_left = 481.0
 offset_top = 91.0
 offset_right = 577.0
 offset_bottom = 114.0
 text = "SOBREVIVA!!"
+script = ExtResource("5_u5f0c")
+controller = NodePath("../..")
+diver_enemy_scene = ExtResource("6_0g6v0")
+enemy_container = NodePath("../../EnemyContainer")
 
 [node name="Victory" type="Label" parent="UI"]
-offset_left = 798.0
-offset_top = 266.0
-offset_right = 1021.0
-offset_bottom = 289.0
+offset_left = 272.0
+offset_top = 336.0
+offset_right = 828.0
+offset_bottom = 391.0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_u5f0c")
 text = "Parabéns! Tutorial completo."
 
 [node name="Player" parent="." instance=ExtResource("2_pgr2e")]
 position = Vector2(514, 525)
 
 [node name="LaserContainer" type="Node2D" parent="."]
+
+[node name="EnemyContainer" type="Node2D" parent="."]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 

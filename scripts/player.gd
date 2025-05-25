@@ -43,8 +43,16 @@ func _physics_process(delta):
 	Input.get_axis("move_up","move_down"))
 	velocity = direction * speed
 	move_and_slide()	
-	#global_position = global_position.clamp(Vector2.ZERO,get_viewport_rect().size)
+	 # Limitar a posição do jogador dentro da tela com margens ajustadas
+	var viewport_size = get_viewport_rect().size
+	var player_size = $Sprite2D.get_rect().size * $Sprite2D.scale
 	
+	global_position.x = clamp(global_position.x, player_size.x / 2, viewport_size.x - player_size.x / 2)
+	
+	# Limites verticais
+	var margin_top = 0 
+	var margin_bottom = player_size.y 
+	global_position.y = clamp(global_position.y, margin_top, viewport_size.y - margin_bottom)	
 	
 func shoot():
 	laser_shot.emit(laser_scene, saida_tiro.global_position)

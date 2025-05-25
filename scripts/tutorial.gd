@@ -50,6 +50,8 @@ func start_next_step():
 
 	if current_step >= steps.size():
 		labels["victory"].visible = true
+		await get_tree().create_timer(2.0).timeout
+		get_tree().change_scene_to_file("res://menu.tscn")  
 		return
 
 	var step = steps[current_step]
@@ -63,12 +65,18 @@ func start_next_step():
 
 	current_script = step.script.new()
 	current_script.controller = self
-	add_child(current_script)
+
+	if step.label == "survive":
+		current_script.diver_enemy_scene = preload("res://scenes/diver_enemy.tscn")
+		current_script.enemy_container = $EnemyContainer
+		add_child(current_script)
+		current_script.start_survive()
+	else:
+		add_child(current_script)
 
 func tutorial_is_done():
 	if step_done:
 		return
 	step_done = true
-	print("Etapa %d concluída" % current_step)
 	current_step += 1
 	start_next_step()
