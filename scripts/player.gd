@@ -4,7 +4,7 @@ signal laser_shot(laser_scene, location)
 @export var speed = 300
 @onready var saida_tiro = $Muzzle
 @onready var sprite = $Sprite2D
-@onready var cooldown_bar = get_tree().root.get_node("Game/HUD/CooldownBar")
+@onready var cooldown_bar = get_cooldown_bar()
 @onready var invul_sound = $InvulSound
 
 var laser_scene = preload("res://scenes/laser.tscn")
@@ -13,10 +13,19 @@ var shoot_cooldown := false
 
 # Variáveis: Invulnerabilidade
 var is_invulnerable = false
-var invuln_time_max := 3.0
+var invuln_time_max := 2.0
 var invuln_timer := 0.0
 var cooldown_max := 10.0
 var cooldown_timer := 10.0  # começa carregada
+
+func get_cooldown_bar():
+	var scene_name = get_tree().current_scene.name
+	var hud_path = "%s/HUD/CooldownBar" % scene_name
+	if get_tree().root.has_node(hud_path):
+		return get_tree().root.get_node(hud_path)
+	else:
+		print("CooldownBar não encontrado em: ", hud_path)
+		return null
 
 func _process(delta):
 	# Tiro
@@ -43,7 +52,8 @@ func shoot():
 # Função: Invulnerabilidade
 func handle_invulnerability(delta):
 	# Atualiza barra
-	cooldown_bar.value = cooldown_timer
+	if cooldown_bar:
+		cooldown_bar.value = cooldown_timer
 
 	# Atualiza timers
 	if cooldown_timer < cooldown_max:

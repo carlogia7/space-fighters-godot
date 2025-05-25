@@ -1,3 +1,110 @@
-[gd_scene format=3 uid="uid://dlf74mw2su2er"]
+[gd_scene load_steps=10 format=3 uid="uid://d31h4smahgns4"]
+
+[ext_resource type="Texture2D" uid="uid://cco1ayel3shl6" path="res://assets/background/bg-back.png" id="1_ci5ev"]
+[ext_resource type="Script" uid="uid://bn6umy76konyr" path="res://scripts/tutorial.gd" id="1_ebau5"]
+[ext_resource type="PackedScene" uid="uid://jqm5euw4tqqq" path="res://scenes/player.tscn" id="2_pgr2e"]
+[ext_resource type="Texture2D" uid="uid://d0fp0lbuo52xb" path="res://assets/wasd.png" id="3_288ch"]
+[ext_resource type="AudioStream" uid="uid://c3iu5yjwfkjii" path="res://assets/sounds/tutorial-warped-shooting.wav" id="3_pgr2e"]
+[ext_resource type="Texture2D" uid="uid://dorjrgaep0678" path="res://assets/mouse-button.png" id="4_twv1b"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ebau5"]
+texture = ExtResource("1_ci5ev")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebau5"]
+bg_color = Color(0.286275, 0.337255, 0.384314, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_288ch"]
+bg_color = Color(0.509804, 0.568627, 0.917647, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Tutorial" type="Node2D"]
+script = ExtResource("1_ebau5")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ebau5")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MovLabel" type="Label" parent="UI"]
+offset_left = 279.0
+offset_top = 167.0
+offset_right = 572.0
+offset_bottom = 194.0
+text = "Use as teclas                    para se mover"
+
+[node name="WASD" type="TextureRect" parent="UI"]
+offset_left = 347.0
+offset_top = 126.0
+offset_right = 496.0
+offset_bottom = 254.0
+texture = ExtResource("3_288ch")
+expand_mode = 1
+
+[node name="ShootLabel" type="Label" parent="UI"]
+offset_left = 648.0
+offset_top = 117.0
+offset_right = 975.0
+offset_bottom = 172.0
+text = "Clique com o botão esquerdo para atirar"
+
+[node name="Mouse" type="TextureRect" parent="UI"]
+offset_left = 758.0
+offset_top = 143.0
+offset_right = 826.0
+offset_bottom = 246.0
+texture = ExtResource("4_twv1b")
+expand_mode = 1
+
+[node name="InvulLabel" type="Label" parent="UI"]
+offset_left = 52.0
+offset_top = 465.0
+offset_right = 611.0
+offset_bottom = 517.0
+text = "Use a tecla ESPAÇO para ativar a invulnerabilidade
+e acompanhe a barra"
+
+[node name="Survive" type="Label" parent="UI"]
+offset_left = 481.0
+offset_top = 91.0
+offset_right = 577.0
+offset_bottom = 114.0
+text = "SOBREVIVA!!"
+
+[node name="Victory" type="Label" parent="UI"]
+offset_left = 798.0
+offset_top = 266.0
+offset_right = 1021.0
+offset_bottom = 289.0
+text = "Parabéns! Tutorial completo."
+
+[node name="Player" parent="." instance=ExtResource("2_pgr2e")]
+position = Vector2(514, 525)
+
+[node name="LaserContainer" type="Node2D" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="CooldownBar" type="ProgressBar" parent="HUD"]
+offset_left = 13.0
+offset_top = 611.0
+offset_right = 130.0
+offset_bottom = 638.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ebau5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_288ch")
+max_value = 10.0
+value = 10.0
+rounded = true
+show_percentage = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_pgr2e")
+autoplay = true
