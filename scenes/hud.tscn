@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp534ffs43dgf"]
+
+[ext_resource type="Script" uid="uid://bau1frtt5mph2" path="res://scripts/hud.gd" id="1_ahhtf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oo0fn"]
+font_size = 60
+shadow_size = 5
+shadow_color = Color(0, 0, 0.482353, 0.603922)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ahhtf")
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "SCORE:9999"
+label_settings = SubResource("LabelSettings_oo0fn")
+horizontal_alignment = 1

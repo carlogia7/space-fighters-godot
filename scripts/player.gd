@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody2D
 
 signal laser_shot(laser_scene, location)
+signal killed
 @export var speed = 300
 @onready var saida_tiro = $Muzzle
 @onready var sprite = $Sprite2D
@@ -90,4 +91,5 @@ func end_invulnerability():
 	sprite.modulate.a = 1.0  # volta ao normal
 	
 func die():
+	killed.emit()
 	queue_free()
