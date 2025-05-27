@@ -18,7 +18,8 @@ func _on_body_entered(body):
 		if not body.is_invulnerable:
 			body.die()
 			die()
-
+			if get_tree().current_scene.name == "Tutorial":
+				get_tree().change_scene_to_file("res://menu.tscn")
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
